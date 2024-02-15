@@ -1,4 +1,8 @@
 package org.example.trianglecalculator.dto;
 
-public class TriangleMedianData {
+public record TriangleMedianData(
+        double medianA,
+        double medianB,
+        double medianC
+) {
 }
