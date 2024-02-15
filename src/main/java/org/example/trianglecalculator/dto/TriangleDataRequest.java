@@ -3,7 +3,7 @@ package org.example.trianglecalculator.dto;
 import lombok.Data;
 
 @Data
-public class TriangleData {
+public class TriangleDataRequest {
 
     double sideAB;
     double sideBC;
