@@ -1,10 +1,12 @@
 package org.example.trianglecalculator.dto;
 
 import lombok.Builder;
+import lombok.Data;
 import org.example.trianglecalculator.domain.TriangleAngleType;
 import org.example.trianglecalculator.domain.TriangleSideType;
 
 @Builder
+@Data
 public class TriangleDataResponse {
 
     double area;
@@ -17,4 +19,5 @@ public class TriangleDataResponse {
     double inscribedCircle;   //вписанная окружность
     double circumscribedCircle;    //описанная окружность
     RightTypeTriangleData rightTriangleInfo;
+
 }

@@ -1,7 +1,5 @@
 package org.example.trianglecalculator.controller;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -12,23 +10,22 @@ import org.example.trianglecalculator.exception.TriangleValidateException;
 import org.example.trianglecalculator.service.TriangleComputeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-@RestController("/triangle")
+@RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TriangleCalculationController {
 
     TriangleComputeService triangleComputeService;
 
-    @GetMapping("/info")
-    public ResponseEntity<?> getTriangleInfo(@Valid TriangleDataRequest request) {
+    @PostMapping("/info")
+    public ResponseEntity<?> getTriangleInfo(@RequestBody @Valid TriangleDataRequest request) {
         return ResponseEntity.ok().body(triangleComputeService.getTriangleInfo(request));
     }
 
@@ -37,17 +34,15 @@ public class TriangleCalculationController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new TriangleValidationErrors(e.getErrors()));
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<?, ?> handleIllegalArgumentException(IllegalArgumentException e) {
-        return Map.of("message", "unknown path params");
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<?, ?> handleConstraintViolationException(ConstraintViolationException e) {
-        return e.getConstraintViolations().stream()
-                .collect(Collectors.toMap(ConstraintViolation::getPropertyPath,
-                        v -> Map.of("message", v.getMessage(), "value", String.valueOf(v.getInvalidValue()))));
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }

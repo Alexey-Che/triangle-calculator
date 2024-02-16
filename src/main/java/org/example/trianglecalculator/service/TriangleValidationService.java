@@ -15,7 +15,7 @@ public class TriangleValidationService {
         List<String> errors = new ArrayList<>();
 
         if (!isTriangle(request)) {
-            errors.add("Одна из сторон меньше суммы двух других");
+            errors.add("Одна из сторон больше суммы двух других");
         }
 
         if (!have180Degrees(request)) {
