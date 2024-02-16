@@ -1,8 +1,17 @@
 package org.example.trianglecalculator.exception;
 
-public class TriangleValidateException extends RuntimeException {
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
-    public TriangleValidateException(String message) {
-        super(message);
-    }
+import java.util.List;
+
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
+public class TriangleValidateException extends QuietException {
+
+    List<String> errors;
+
 }

@@ -1,15 +1,27 @@
 package org.example.trianglecalculator.service;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.val;
 import org.example.trianglecalculator.domain.TriangleAngleType;
 import org.example.trianglecalculator.domain.TriangleSideType;
 import org.example.trianglecalculator.dto.*;
+import org.example.trianglecalculator.exception.TriangleValidateException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TriangleComputeService {
 
+    TriangleValidationService triangleValidationService;
+
     public TriangleDataResponse getTriangleInfo(TriangleDataRequest request) {
+        triangleValidationService.validateTriangleDataRequest(request);
+
         val triangleAngleType = determineTriangleAngleType(request);
         var triangleInfo = TriangleDataResponse.builder()
                 .area(computeArea(request))
@@ -118,8 +130,13 @@ public class TriangleComputeService {
     }
 
     private RightTypeTriangleData computeRightTypeTriangleInfo(TriangleDataRequest triangle) {
+
         var rightTypeTriangleData = new RightTypeTriangleData();
         setLegsAndHypotenuse(triangle, rightTypeTriangleData);
+
+        if (!triangleValidationService.isTriangleRightByPythagoreanTheorem(rightTypeTriangleData)) {
+            throw new TriangleValidateException(List.of("Сумма квадратов катетов не равна квадрату гипотенузы"));
+        }
 
         rightTypeTriangleData.setSinDegrees(computeSinDegrees(rightTypeTriangleData));
         rightTypeTriangleData.setSinRadians(computeSinDegrees(rightTypeTriangleData));
@@ -129,7 +146,8 @@ public class TriangleComputeService {
 
         rightTypeTriangleData.setTgDegrees(computeTangentDegrees(rightTypeTriangleData));
         rightTypeTriangleData.setTgRadians(computeTangentRadian(rightTypeTriangleData));
-        return null;
+
+        return rightTypeTriangleData;
     }
 
     private double computeSinDegrees(RightTypeTriangleData rightTriangleData) {

@@ -5,16 +5,25 @@ import org.example.trianglecalculator.dto.TriangleDataRequest;
 import org.example.trianglecalculator.exception.TriangleValidateException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TriangleValidationService {
 
     public void validateTriangleDataRequest(TriangleDataRequest request) {
+        List<String> errors = new ArrayList<>();
+
         if (!isTriangle(request)) {
-            throw new TriangleValidateException("Одна из сторон меньше суммы двух других");
+            errors.add("Одна из сторон меньше суммы двух других");
         }
 
         if (!have180Degrees(request)) {
-            throw new TriangleValidateException("Сумма углов треугольника не равна 180");
+            errors.add("Сумма углов треугольника не равна 180");
+        }
+
+        if (!errors.isEmpty()) {
+            throw new TriangleValidateException(errors);
         }
     }
 
