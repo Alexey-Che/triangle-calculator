@@ -2,6 +2,7 @@ package org.example.trianglecalculator.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -53,7 +54,14 @@ public class TriangleCalculationController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Возвращает информацию о треугольнике",
                     content = @Content(schema = @Schema(implementation = TriangleDataResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Входные данные не прошли валидацию")
+            @ApiResponse(responseCode = "400", description = "Входные данные не прошли валидацию",
+                    content = @Content(schema = @Schema(oneOf = {TriangleValidationErrors.class, Map.class}),
+                            examples = {
+                                    @ExampleObject(name = "пример ошибки построения треугольника",
+                                            value = "{\"errors\": [\"Одна из сторон больше суммы двух других\",\"Сумма углов треугольника не равна 180\"]}"),
+                                    @ExampleObject(name = "пример ошибки введенных данных",
+                                            value = "{\"sideAB\": \"Нужно указать длину стороны треугольника, ее значение должно быть больше 0\"}")
+                            }))
     })
     @PostMapping("/info")
     public ResponseEntity<?> getTriangleInfo(@RequestBody @Valid TriangleDataRequest request) {
