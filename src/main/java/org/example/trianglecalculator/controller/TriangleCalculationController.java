@@ -58,9 +58,11 @@ public class TriangleCalculationController {
                     content = @Content(schema = @Schema(oneOf = {TriangleValidationErrors.class, Map.class}),
                             examples = {
                                     @ExampleObject(name = "пример ошибки построения треугольника",
-                                            value = "{\"errors\": [\"Одна из сторон больше суммы двух других\",\"Сумма углов треугольника не равна 180\"]}"),
+                                            value = "{\"errors\": [\"Одна из сторон больше суммы двух других\"," +
+                                                    "\"Сумма углов треугольника не равна 180\"]}"),
                                     @ExampleObject(name = "пример ошибки введенных данных",
-                                            value = "{\"sideAB\": \"Нужно указать длину стороны треугольника, ее значение должно быть больше 0\"}")
+                                            value = "{\"sideAB\": \"Нужно указать длину стороны треугольника, " +
+                                                    "ее значение должно быть больше 0\"}")
                             }))
     })
     @PostMapping("/info")
