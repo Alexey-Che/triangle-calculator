@@ -36,13 +36,21 @@ public class TriangleValidationService {
                 Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2);
     }
 
-    public boolean have180Degrees(TriangleDataRequest request) {
+    private boolean have180Degrees(TriangleDataRequest request) {
         return request.getAngleA() + request.getAngleB() + request.getAngleC() == 180;
     }
 
-    public boolean isTriangle(TriangleDataRequest request) {
+    private boolean isTriangle(TriangleDataRequest request) {
         return request.getSideAB() + request.getSideAC() > request.getSideBC()
                 && request.getSideAB() + request.getSideBC() > request.getSideAC()
                 && request.getSideBC() + request.getSideAC() > request.getSideAB();
     }
+
+    public boolean isTriangleEquilateral(TriangleDataRequest request) {
+        return request.getAngleA() == request.getAngleB()
+                && request.getAngleB() == request.getAngleC()
+                && request.getAngleC() == request.getAngleA();
+
+    }
+
 }

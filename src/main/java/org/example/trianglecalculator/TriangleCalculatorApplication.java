@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         version = "0.0.1",
         contact = @Contact(email = "lexa.36484@gmail.com",
                 url = "https://t.me/KorotkihA"),
-        description = "Коротких А.И. контакты:"))
+        description = "Коротких А.И."))
 @SpringBootApplication
 public class TriangleCalculatorApplication {
 

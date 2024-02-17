@@ -23,17 +23,25 @@ public class TriangleComputeService {
         triangleValidationService.validateTriangleDataRequest(request);
 
         val triangleAngleType = determineTriangleAngleType(request);
+        val triangleSideType = defineTriangleSideType(request);
+
+        if (triangleSideType == TriangleSideType.EQUILATERAL
+                && !triangleValidationService.isTriangleEquilateral(request)) {
+            throw new TriangleValidateException(
+                    List.of("углы в равностороннем треугольнике должны быть равны друг другу")
+            );
+        }
         var triangleInfo = TriangleDataResponse.builder()
                 .area(computeArea(request))
                 .perimeter(computePerimeter(request))
+                .sideType(triangleSideType)
                 .angleType(triangleAngleType);
 
         if (triangleAngleType == TriangleAngleType.RIGHT) {
             triangleInfo.rightTriangleInfo(computeRightTypeTriangleInfo(request));
         }
 
-        triangleInfo.sideType(defineTriangleSideType(request))
-                .medians(computeTriangleMedians(request))
+        triangleInfo.medians(computeTriangleMedians(request))
                 .bisectors(computeTriangleBisectors(request))
                 .heights(computeTriangleHeights(request))
                 .inscribedCircle(computeInscribedCircleOfTriangleArea(request))
