@@ -29,38 +29,38 @@ Java : 17
 
 - 200: 
 ```
-  {
+{
   "area": 6,
   "perimeter": 12,
   "sideType": "SCALENE",
   "angleType": "RIGHT",
   "medians": {
     "medianA": 2.5,
-    "medianB": 3.605551275463989,
-    "medianC": 4.272001872658765
+    "medianB": 4.272001872658765,
+    "medianC": 3.605551275463989
   },
   "bisectors": {
-    "bisectorA": 3.1426968052735447,
+    "bisectorA": 2.6516504294495533,
     "bisectorB": 3.066608881558455,
-    "bisectorC": 3.557561308473011
+    "bisectorC": 4.216368958190235
   },
   "heights": {
     "heightA": 2.4,
-    "heightB": 3,
-    "heightC": 4
+    "heightB": 4,
+    "heightC": 3
   },
   "inscribedCircle": 3.141592653589793,
-  "circumscribedCircle": 7.0685834705770345,
+  "circumscribedCircle": 12.566370614359172,
   "rightTriangleInfo": {
     "hypotenuse": 5,
-    "adjacentLeg": 3,
-    "oppositeLeg": 4,
-    "sinDegrees": 0.8,
-    "sinRadians": 0.8,
-    "cosDegrees": 0.6,
-    "cosRadians": 0.010471975511965976,
-    "tgDegrees": 1.3333333333333333,
-    "tgRadians": 0.00024369393582936687
+    "adjacentLeg": 4,
+    "oppositeLeg": 3,
+    "sinDegrees": 0.6,
+    "sinRadians": 0.6,
+    "cosDegrees": 0.8,
+    "cosRadians": 0.013962634015954637,
+    "tgDegrees": 0.75,
+    "tgRadians": 0.00018277045187202514
   }
 }
 ```

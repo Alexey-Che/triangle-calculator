@@ -14,7 +14,7 @@ public class TriangleDataRequest {
     private static final String SIDE_ERROR_MESSAGE = "Нужно указать длину стороны треугольника, ее значение должно быть больше 0";
     private static final String ANGLE_ERROR_MESSAGE = "Нужно указать величину угла треугольника, его значение должно быть больше 0";
 
-    @Schema(name = "sideAB", example = "3", description = "Длина отрезка AB")
+    @Schema(name = "sideAB", example = "4", description = "Длина отрезка AB")
     @Positive(message = SIDE_ERROR_MESSAGE)
     double sideAB;
 
@@ -22,7 +22,7 @@ public class TriangleDataRequest {
     @Positive(message = SIDE_ERROR_MESSAGE)
     double sideBC;
 
-    @Schema(name = "sideAC", example = "4", description = "Длина отрезка AС")
+    @Schema(name = "sideAC", example = "3", description = "Длина отрезка AС")
     @Positive(message = SIDE_ERROR_MESSAGE)
     double sideAC;
 
