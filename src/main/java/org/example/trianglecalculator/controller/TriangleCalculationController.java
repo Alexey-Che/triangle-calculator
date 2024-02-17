@@ -1,10 +1,17 @@
 package org.example.trianglecalculator.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.example.trianglecalculator.dto.TriangleDataRequest;
+import org.example.trianglecalculator.dto.TriangleDataResponse;
 import org.example.trianglecalculator.dto.TriangleValidationErrors;
 import org.example.trianglecalculator.exception.TriangleValidateException;
 import org.example.trianglecalculator.service.TriangleComputeService;
@@ -18,12 +25,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Tag(name = "Расчет параметров треугольника")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TriangleCalculationController {
 
     TriangleComputeService triangleComputeService;
 
+    @Operation(description = """
+            Получение информации о треугольнике по длинам его сторон и величине углов:
+            - Площадь
+            - Периметр
+            - Определение типа по сторонам (равнобедренный, разносторонний, равносторонний)
+            - Определения типа по углам (острый, тупой, прямой)
+            - Длины медиан
+            - Длины биссектрис
+            - Длины высот
+            - Площадь вписанной окружности
+            - Площадь описанной окружности
+            
+           Для прямых треугольников дополнительно рассчитываются:
+            - Синус (в градусах и радианах),
+            - Косинус (в градусах и радианах),
+            - Тангенс (в градусах и радианах)
+            - Длины катетов и гипотенузы (исходя из предоставленных данных)
+            """)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Возвращает информацию о треугольнике",
+                    content = @Content(schema = @Schema(implementation = TriangleDataResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Входные данные не прошли валидацию")
+    })
     @PostMapping("/info")
     public ResponseEntity<?> getTriangleInfo(@RequestBody @Valid TriangleDataRequest request) {
         return ResponseEntity.ok().body(triangleComputeService.getTriangleInfo(request));

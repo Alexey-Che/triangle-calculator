@@ -25,6 +25,7 @@ public class TriangleComputeService {
         val triangleAngleType = determineTriangleAngleType(request);
         var triangleInfo = TriangleDataResponse.builder()
                 .area(computeArea(request))
+                .perimeter(computePerimeter(request))
                 .angleType(triangleAngleType);
 
         if (triangleAngleType == TriangleAngleType.RIGHT) {

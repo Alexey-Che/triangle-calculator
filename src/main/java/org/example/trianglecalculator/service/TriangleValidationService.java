@@ -11,6 +11,8 @@ import java.util.List;
 @Service
 public class TriangleValidationService {
 
+    public static final double MEASUREMENT_ERROR = 0.1;
+
     public void validateTriangleDataRequest(TriangleDataRequest request) {
         List<String> errors = new ArrayList<>();
 
@@ -28,7 +30,10 @@ public class TriangleValidationService {
     }
 
     public boolean isTriangleRightByPythagoreanTheorem(RightTypeTriangleData triangle) {
-        return Math.pow(triangle.getHypotenuse(), 2) == Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2);
+        return Math.pow(triangle.getHypotenuse(), 2) + MEASUREMENT_ERROR >
+                Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2)
+                || Math.pow(triangle.getHypotenuse(), 2) + MEASUREMENT_ERROR <
+                Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2);
     }
 
     public boolean have180Degrees(TriangleDataRequest request) {
