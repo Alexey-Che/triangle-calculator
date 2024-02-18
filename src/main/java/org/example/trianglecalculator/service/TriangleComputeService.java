@@ -17,6 +17,8 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TriangleComputeService {
 
+    private static final int RIGHT_ANGLE_DEGREES = 90;
+
     TriangleValidationService triangleValidationService;
 
     /**
@@ -109,9 +111,11 @@ public class TriangleComputeService {
      * @return {@link TriangleAngleType} тип треугольника
      */
     private TriangleAngleType determineTriangleAngleType(TriangleDataRequest triangle) {
-        if (triangle.getAngleA() == 90 || triangle.getAngleB() == 90 || triangle.getAngleC() == 90) {
+        if (triangle.getAngleA() == RIGHT_ANGLE_DEGREES || triangle.getAngleB() == RIGHT_ANGLE_DEGREES
+                || triangle.getAngleC() == RIGHT_ANGLE_DEGREES) {
             return TriangleAngleType.RIGHT;
-        } else if (triangle.getAngleA() > 90 || triangle.getAngleB() > 90 || triangle.getAngleC() > 90) {
+        } else if (triangle.getAngleA() > RIGHT_ANGLE_DEGREES || triangle.getAngleB() > RIGHT_ANGLE_DEGREES
+                || triangle.getAngleC() > RIGHT_ANGLE_DEGREES) {
             return TriangleAngleType.OBTUSE;
         } else {
             return TriangleAngleType.ACUTE;
@@ -297,14 +301,14 @@ public class TriangleComputeService {
     /**
      * Устанавливает значения гипотенузы и катетов в {@link RightTypeTriangleData}
      * @param triangle {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
-     * @param rightTriangleData @link RightTypeTriangleData}  с установленными полями для гипотенузы и катетов
+     * @param rightTriangleData {@link RightTypeTriangleData}  с установленными полями для гипотенузы и катетов
      */
     private void setLegsAndHypotenuse(TriangleDataRequest triangle, RightTypeTriangleData rightTriangleData) {
-        if (triangle.getAngleA() == 90) {
+        if (triangle.getAngleA() == RIGHT_ANGLE_DEGREES) {
             rightTriangleData.setAdjacentLeg(triangle.getSideAB());
             rightTriangleData.setOppositeLeg(triangle.getSideAC());
             rightTriangleData.setHypotenuse(triangle.getSideBC());
-        } else if (triangle.getAngleB() == 90) {
+        } else if (triangle.getAngleB() == RIGHT_ANGLE_DEGREES) {
             rightTriangleData.setAdjacentLeg(triangle.getSideBC());
             rightTriangleData.setOppositeLeg(triangle.getSideAB());
             rightTriangleData.setHypotenuse(triangle.getSideAC());
