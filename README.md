@@ -23,7 +23,7 @@ Java : 17
 
 
 ### Swagger
-Документация swagger доступна при локальном запуске на  [*http://localhost:8080/swagger-ui/#/*](http://localhost:8080/swagger-ui/#/)
+Документация swagger доступна при локальном запуске на  [*http://localhost:8080/swagger-ui/index.html*](http://localhost:8080/swagger-ui/index.html)
 
 ### Примеры ответов:
 

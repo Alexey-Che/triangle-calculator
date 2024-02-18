@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequestMapping("api/v1/triangle")
 @Tag(name = "Расчет параметров треугольника")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

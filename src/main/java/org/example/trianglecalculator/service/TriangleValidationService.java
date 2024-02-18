@@ -15,7 +15,7 @@ public class TriangleValidationService {
 
     /**
      * Проверяет параметры треугольника по критериям существования
-     * @param request {@link TriangleDataRequest} со значениями длин сторон и углов треугольника
+     * @param request {@link TriangleDataRequest} значения длин сторон и углов треугольника
      */
     public void validateTriangleDataRequest(TriangleDataRequest request) {
         List<String> errors = new ArrayList<>();
@@ -35,7 +35,7 @@ public class TriangleValidationService {
 
     /**
      * Проверка прямоугольного треугольника по теореме Пифагора
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return соответствие прямоугольного треугольника теореме Пифагора
      */
     public boolean isTriangleRightByPythagoreanTheorem(RightTypeTriangleData triangle) {
@@ -47,7 +47,7 @@ public class TriangleValidationService {
 
     /**
      * Проверка суммы углов в треугольнике
-     * @param request {@link TriangleDataRequest} со значениями углов в градусах
+     * @param request {@link TriangleDataRequest} значения углов в градусах
      * @return соответствие сумме в 180 градусов
      */
     private boolean have180Degrees(TriangleDataRequest request) {
@@ -56,7 +56,7 @@ public class TriangleValidationService {
 
     /**
      * Проверка, что ни одна из сторон в треугольнике не больше суммы двух других
-     * @param request {@link TriangleDataRequest} со значениями длин сторон
+     * @param request {@link TriangleDataRequest} значения длин сторон
      * @return соответствие того, что ни одна из сторон в треугольнике не больше суммы двух других
      */
     private boolean isTriangle(TriangleDataRequest request) {
@@ -67,7 +67,7 @@ public class TriangleValidationService {
 
     /**
      * Проверка равностороннего треугольника
-     * @param request {@link TriangleDataRequest} со значениями длин сторон
+     * @param request {@link TriangleDataRequest} значения длин сторон
      * @return равенство всех сторон треугольника
      */
     public boolean isTriangleEquilateral(TriangleDataRequest request) {

@@ -21,7 +21,7 @@ public class TriangleComputeService {
 
     /**
      * Получение параметров треугольника
-     * @param request переданный в контроллер запрос {@link TriangleDataRequest} со значениями длин сторон и углов
+     * @param request переданный в контроллер запрос {@link TriangleDataRequest} значения длин сторон и углов
      * @return {@link TriangleDataResponse}
      * @throws TriangleValidateException если нельзя построить треугольник по заданным параметрам
      */
@@ -58,7 +58,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление площади треугольника
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return площадь треугольника
      */
     private double computeArea(TriangleDataRequest triangle) {
@@ -68,7 +68,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление периметра треугольника
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return числовое значение периметра треугольника
      */
     private double computePerimeter(TriangleDataRequest triangle) {
@@ -77,7 +77,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление половины периметра треугольника
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return числовое значение половины периметра треугольника
      */
     private double computeHalfPerimeter(TriangleDataRequest triangle) {
@@ -86,7 +86,7 @@ public class TriangleComputeService {
 
     /**
      * Определение типа треугольника по его сторонам
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return {@link TriangleSideType} тип треугольника
      */
     private TriangleSideType defineTriangleSideType(TriangleDataRequest triangle) {
@@ -120,7 +120,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление медиан треугольника
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return {@link TriangleDataRequest} числовые значения медиан треугольника
      */
     private TriangleMedianData computeTriangleMedians(TriangleDataRequest triangle) {
@@ -144,7 +144,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление биссектрис треугольника
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return {@link TriangleBisectorData} числовые значения биссектрис треугольника
      */
     private TriangleBisectorData computeTriangleBisectors(TriangleDataRequest triangle) {
@@ -168,7 +168,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление высот треугольника
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return {@link TriangleHeightData} числовые значения высот треугольника
      */
     private TriangleHeightData computeTriangleHeights(TriangleDataRequest triangle) {
@@ -192,7 +192,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление площади вписанной в треугольник окружности
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон
+     * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return числовое значение площади вписанной в треугольник окружности
      */
     private double computeInscribedCircleOfTriangleArea(TriangleDataRequest triangle) {
@@ -205,7 +205,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление площади описанной вокруг треугольника окружности
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон и углов треугольника
+     * @param triangle {@link TriangleDataRequest} значения длин сторон и углов треугольника
      * @return числовое значение площади описанной вокруг треугольника окружности
      */
     private double computeCircumscribedCircleOfTriangleArea(TriangleDataRequest triangle) {
@@ -216,7 +216,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление дополнительной информации для прямоугольного треугольника
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон и углов треугольника
+     * @param triangle {@link TriangleDataRequest} значения длин сторон и углов треугольника
      * @return {@link RightTypeTriangleData} информация о синусе, косинусе, тангенсе, длинах катетов и гипотенузы
      */
     private RightTypeTriangleData computeRightTypeTriangleInfo(TriangleDataRequest triangle) {
@@ -242,7 +242,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление синуса угла в градусах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} со значениями длин сторон и углов прямоугольного треугольника
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
      * @return значение синуса угла в градусах
      */
     private double computeSinDegrees(RightTypeTriangleData rightTriangleData) {
@@ -251,7 +251,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление синуса угла в радианах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} со значениями длин сторон и углов прямоугольного треугольника
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
      * @return значение синуса угла в радианах
      */
     private double computeSinRadian(RightTypeTriangleData rightTriangleData) {
@@ -260,7 +260,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление косинуса угла в градусах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} со значениями длин сторон и углов прямоугольного треугольника
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
      * @return значение косинуса угла в градусах
      */
     private double computeCosDegrees(RightTypeTriangleData rightTriangleData) {
@@ -269,7 +269,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление косинуса угла в радианах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} со значениями длин сторон и углов прямоугольного треугольника
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
      * @return значение косинуса угла в радианах
      */
     private double computeCosRadian(RightTypeTriangleData rightTriangleData) {
@@ -278,7 +278,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление тангенса угла в градусах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} со значениями длин сторон и углов прямоугольного треугольника
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
      * @return значение тангенса угла в градусах
      */
     private double computeTangentDegrees(RightTypeTriangleData rightTriangleData) {
@@ -287,7 +287,7 @@ public class TriangleComputeService {
 
     /**
      * Вычисление тангенса угла в радианах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} со значениями длин сторон и углов прямоугольного треугольника
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
      * @return значение тангенса угла в радианах
      */
     private double computeTangentRadian(RightTypeTriangleData rightTriangleData) {
@@ -296,7 +296,7 @@ public class TriangleComputeService {
 
     /**
      * Устанавливает значения гипотенузы и катетов в {@link RightTypeTriangleData}
-     * @param triangle {@link TriangleDataRequest} со значениями длин сторон и углов прямоугольного треугольника
+     * @param triangle {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
      * @param rightTriangleData @link RightTypeTriangleData}  с установленными полями для гипотенузы и катетов
      */
     private void setLegsAndHypotenuse(TriangleDataRequest triangle, RightTypeTriangleData rightTriangleData) {
