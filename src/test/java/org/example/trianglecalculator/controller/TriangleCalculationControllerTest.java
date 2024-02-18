@@ -61,7 +61,7 @@ class TriangleCalculationControllerTest {
     }
 
     @ParameterizedTest
-    @MethodSource("listOfInCorrectTriangleParameters")
+    @MethodSource("listOfIncorrectTriangleParameters")
     @SneakyThrows
     void getBadRequestWhenParametersIncorrect(TriangleDataRequest request) {
         mockMvc.
@@ -71,7 +71,7 @@ class TriangleCalculationControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    static Stream<Arguments> listOfInCorrectTriangleParameters() {
+    static Stream<Arguments> listOfIncorrectTriangleParameters() {
         return Stream.of(
                 arguments(new TriangleDataRequest(0, 5, 0, 60, 60 , 60)),
                 arguments(new TriangleDataRequest(10, 10, 10, 28.96, 75.52 , 75.52)),
