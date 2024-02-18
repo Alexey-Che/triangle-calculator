@@ -2,6 +2,10 @@
 
 Java : 17
 
+### Swagger
+Документация swagger доступна при локальном запуске на  [*http://localhost:8080/swagger-ui/index.html*](http://localhost:8080/swagger-ui/index.html)
+
+
 Получение информации о треугольнике по длинам его сторон и величине углов:
 
     Площадь
@@ -21,9 +25,6 @@ Java : 17
     Тангенс (в градусах и радианах)
     Длины катетов и гипотенузы (исходя из предоставленных данных)
 
-
-### Swagger
-Документация swagger доступна при локальном запуске на  [*http://localhost:8080/swagger-ui/index.html*](http://localhost:8080/swagger-ui/index.html)
 
 ### Примеры ответов:
 
