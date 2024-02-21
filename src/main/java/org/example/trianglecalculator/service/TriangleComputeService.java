@@ -59,9 +59,16 @@ public class TriangleComputeService {
     }
 
     /**
-     * Вычисление площади треугольника
-     * @param triangle {@link TriangleDataRequest} значения длин сторон
-     * @return площадь треугольника
+     * Вычисление площади треугольника.
+     *
+     * @param triangle {@link TriangleDataRequest} значения длин сторон.
+     * @return площадь треугольника.
+     *
+     * @implNote Площадь треугольника вычисляется по формуле Герона:
+     * <pre>
+     *     s = √(p * (p - a) * (p - b) * (p - c))
+     * </pre>
+     * где s - площадь треугольника, a, b и c - длины сторон, p - полупериметр треугольника.
      */
     private double computeArea(TriangleDataRequest triangle) {
         double s = computeHalfPerimeter(triangle);
@@ -69,18 +76,32 @@ public class TriangleComputeService {
     }
 
     /**
-     * Вычисление периметра треугольника
-     * @param triangle {@link TriangleDataRequest} значения длин сторон
-     * @return числовое значение периметра треугольника
+     * Вычисление периметра треугольника.
+     *
+     * @param triangle {@link TriangleDataRequest} значения длин сторон.
+     * @return числовое значение периметра треугольника.
+     *
+     * @implNote Периметр треугольника вычисляется как сумма длин всех его сторон:
+     * <pre>
+     *     P = a + b + c
+     * </pre>
+     * где P - периметр треугольника, a, b и c - длины сторон.
      */
     private double computePerimeter(TriangleDataRequest triangle) {
         return triangle.getSideAB() + triangle.getSideBC() + triangle.getSideAC();
     }
 
     /**
-     * Вычисление половины периметра треугольника
-     * @param triangle {@link TriangleDataRequest} значения длин сторон
-     * @return числовое значение половины периметра треугольника
+     * Вычисление половины периметра треугольника.
+     *
+     * @param triangle {@link TriangleDataRequest} значения длин сторон.
+     * @return числовое значение половины периметра треугольника.
+     *
+     * @implNote Половина периметра треугольника вычисляется как половина суммы длин всех его сторон:
+     * <pre>
+     *     P/2 = (a + b + c) / 2
+     * </pre>
+     * где P/2 - половина периметра треугольника, a, b и c - длины сторон.
      */
     private double computeHalfPerimeter(TriangleDataRequest triangle) {
         return computePerimeter(triangle) / 2.0;
@@ -136,11 +157,18 @@ public class TriangleComputeService {
     }
 
     /**
-     * Вычисление длины медианы треугольника
-     * @param side1 смежная сторона 1
-     * @param side2 смежная сторона 2
-     * @param oppositeSide противоположная угла сторона треугольника
-     * @return числовое значение медианы треугольника
+     * Вычисление длины медианы треугольника.
+     *
+     * @param side1 смежная сторона 1.
+     * @param side2 смежная сторона 2.
+     * @param oppositeSide противоположная углу сторона треугольника.
+     * @return числовое значение длины медианы треугольника.
+     *
+     * @implNote Длина медианы треугольника вычисляется по формуле:
+     * <pre>
+     *     m = √((2 * a^2 + 2 * b^2 - c^2) / 4)
+     * </pre>
+     * где m - длина медианы треугольника, a и b - смежные стороны, c - противоположная сторона.
      */
     private double computeMedian(double side1, double side2, double oppositeSide) {
         return Math.sqrt((2 * Math.pow(side1, 2) + 2 * Math.pow(side2, 2) - Math.pow(oppositeSide, 2)) / 4);
@@ -160,11 +188,18 @@ public class TriangleComputeService {
     }
 
     /**
+     * Вычисление длины биссектрисы треугольника.
      *
-     * @param angle угол из которого проводится биссектриса
-     * @param side1 смежная сторона 1
-     * @param side2 смежная сторона 2
-     * @return числовое значение длины биссектрисы треугольника
+     * @param angle угол из которого проводится биссектриса (в градусах).
+     * @param side1 смежная сторона 1.
+     * @param side2 смежная сторона 2.
+     * @return числовое значение длины биссектрисы треугольника.
+     *
+     * @implNote Длина биссектрисы треугольника вычисляется по формуле:
+     * <pre>
+     *     b = (2 * a * c * cos(θ/2)) / (a + c)
+     * </pre>
+     * где b - длина биссектрисы треугольника, a и c - смежные стороны, θ - угол.
      */
     private double computeTriangleBisector(double angle, double side1, double side2) {
         return (2 * side1 * side2 * Math.cos(Math.toRadians(angle / 2))) / (side1 + side2);
@@ -185,19 +220,34 @@ public class TriangleComputeService {
     }
 
     /**
-     * Вычисление высоты треугольника
-     * @param area площадь треугольника
-     * @param oppositeSide длина противоположно стороны треугольника от угла из которого проводиться высота
-     * @return числовое значение длины высоты треугольника
+     * Вычисление высоты треугольника.
+     *
+     * @param area площадь треугольника.
+     * @param oppositeSide длина противоположной стороны треугольника от угла, из которого проводится высота.
+     * @return числовое значение длины высоты треугольника.
+     *
+     * @implNote Длина высоты треугольника вычисляется по формуле:
+     * <pre>
+     *     h = (2 * A) / c
+     * </pre>
+     * где h - длина высоты треугольника, A - площадь треугольника, c - длина противоположной стороны.
      */
     private double computeTriangleHeight(double area, double oppositeSide) {
         return (2 * area) / oppositeSide;
     }
 
     /**
-     * Вычисление площади вписанной в треугольник окружности
-     * @param triangle {@link TriangleDataRequest} значения длин сторон
-     * @return числовое значение площади вписанной в треугольник окружности
+     * Вычисление площади вписанной в треугольник окружности.
+     *
+     * @param triangle {@link TriangleDataRequest} значения длин сторон.
+     * @return числовое значение площади вписанной в треугольник окружности.
+     *
+     * @implNote Площадь вписанной в треугольник окружности вычисляется по формуле:
+     * <pre>
+     *     A = π * r^2
+     * </pre>
+     * где A - площадь вписанной в треугольник окружности, r - радиус этой окружности.
+     * Радиус окружности, вписанной в треугольник, вычисляется как отношение площади треугольника к его полупериметру.
      */
     private double computeInscribedCircleOfTriangleArea(TriangleDataRequest triangle) {
         val halfPerimeter = computeHalfPerimeter(triangle);
@@ -208,9 +258,17 @@ public class TriangleComputeService {
     }
 
     /**
-     * Вычисление площади описанной вокруг треугольника окружности
-     * @param triangle {@link TriangleDataRequest} значения длин сторон и углов треугольника
-     * @return числовое значение площади описанной вокруг треугольника окружности
+     * Вычисление площади описанной вокруг треугольника окружности.
+     *
+     * @param triangle {@link TriangleDataRequest} значения длин сторон и углов треугольника.
+     * @return числовое значение площади описанной вокруг треугольника окружности.
+     *
+     * @implNote Площадь описанной вокруг треугольника окружности вычисляется по формуле:
+     * <pre>
+     *     A = π * R^2
+     * </pre>
+     * где A - площадь описанной вокруг треугольника окружности, R - радиус этой окружности.
+     * Радиус окружности, описанной вокруг треугольника, вычисляется как отношение длины любой из сторон треугольника к удвоенной синусе соответствующего угла.
      */
     private double computeCircumscribedCircleOfTriangleArea(TriangleDataRequest triangle) {
         val radius = triangle.getSideAB() / (2 * Math.sin(Math.toRadians(triangle.getAngleA())));
@@ -245,54 +303,96 @@ public class TriangleComputeService {
     }
 
     /**
-     * Вычисление синуса угла в градусах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
-     * @return значение синуса угла в градусах
+     * Вычисление синуса угла в градусах в прямоугольном треугольнике.
+     *
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника.
+     * @return значение синуса угла в градусах.
+     *
+     * @implNote Синус угла в градусах в прямоугольном треугольнике вычисляется как отношение длины противоположенной стороны к длине гипотенузы:
+     * <pre>
+     *     sin(θ) = a / c
+     * </pre>
+     * где sin(θ) - синус угла, a - длина противоположенной стороны, c - длина гипотенузы.
      */
     private double computeSinDegrees(RightTypeTriangleData rightTriangleData) {
         return rightTriangleData.getOppositeLeg() / rightTriangleData.getHypotenuse();
     }
 
     /**
-     * Вычисление синуса угла в радианах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
-     * @return значение синуса угла в радианах
+     * Вычисление синуса угла в радианах в прямоугольном треугольнике.
+     *
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника.
+     * @return значение синуса угла в радианах.
+     *
+     * @implNote Синус угла в радианах в прямоугольном треугольнике вычисляется как синус угла в градусах, переведенный в радианы:
+     * <pre>
+     *     sin(θ) = Math.toRadians(sinDegrees(θ))
+     * </pre>
+     * где sin(θ) - синус угла в радианах, sinDegrees(θ) - синус угла в градусах.
      */
     private double computeSinRadian(RightTypeTriangleData rightTriangleData) {
         return Math.toRadians(computeSinDegrees(rightTriangleData));
     }
 
     /**
-     * Вычисление косинуса угла в градусах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
-     * @return значение косинуса угла в градусах
+     * Вычисление косинуса угла в градусах в прямоугольном треугольнике.
+     *
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника.
+     * @return значение косинуса угла в градусах.
+     *
+     * @implNote Косинус угла в градусах в прямоугольном треугольнике вычисляется как отношение длины прилегающего к углу катета к длине гипотенузы:
+     * <pre>
+     *     cos(θ) = b / c
+     * </pre>
+     * где cos(θ) - косинус угла, b - длина прилегающего к углу катета, c - длина гипотенузы.
      */
     private double computeCosDegrees(RightTypeTriangleData rightTriangleData) {
         return rightTriangleData.getAdjacentLeg() / rightTriangleData.getHypotenuse();
     }
 
     /**
-     * Вычисление косинуса угла в радианах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
-     * @return значение косинуса угла в радианах
+     * Вычисление косинуса угла в радианах в прямоугольном треугольнике.
+     *
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника.
+     * @return значение косинуса угла в радианах.
+     *
+     * @implNote Косинус угла в радианах в прямоугольном треугольнике вычисляется как косинус угла в градусах, переведенный в радианы:
+     * <pre>
+     *     cos(θ) = Math.toRadians(cosDegrees(θ))
+     * </pre>
+     * где cos(θ) - косинус угла в радианах, cosDegrees(θ) - косинус угла в градусах.
      */
     private double computeCosRadian(RightTypeTriangleData rightTriangleData) {
         return Math.toRadians(computeCosDegrees(rightTriangleData));
     }
 
     /**
-     * Вычисление тангенса угла в градусах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
-     * @return значение тангенса угла в градусах
+     * Вычисление тангенса угла в градусах в прямоугольном треугольнике.
+     *
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника.
+     * @return значение тангенса угла в градусах.
+     *
+     * @implNote Тангенс угла в градусах в прямоугольном треугольнике вычисляется как отношение противолежащей катета к прилежащей катету:
+     * <pre>
+     *     tan(θ) = a / b
+     * </pre>
+     * где tan(θ) - тангенс угла, a - длина противоположенного катета, b - длина прилежащего катета.
      */
     private double computeTangentDegrees(RightTypeTriangleData rightTriangleData) {
         return rightTriangleData.getOppositeLeg() / rightTriangleData.getAdjacentLeg();
     }
 
     /**
-     * Вычисление тангенса угла в радианах в прямоугольном треугольнике
-     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника
-     * @return значение тангенса угла в радианах
+     * Вычисление тангенса угла в радианах в прямоугольном треугольнике.
+     *
+     * @param rightTriangleData {@link TriangleDataRequest} значения длин сторон и углов прямоугольного треугольника.
+     * @return значение тангенса угла в радианах.
+     *
+     * @implNote Тангенс угла в радианах в прямоугольном треугольнике вычисляется как отношение противолежащего катета к прилежащему катету:
+     * <pre>
+     *     tan(θ) = oppositeLeg / adjacentLeg
+     * </pre>
+     * где \( \tan(θ) \) - тангенс угла, oppositeLeg - длина противолежащего катета, adjacentLeg - длина прилежащего катета.
      */
     private double computeTangentRadian(RightTypeTriangleData rightTriangleData) {
         return Math.toRadians(computeSinRadian(rightTriangleData));
