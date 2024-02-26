@@ -39,9 +39,9 @@ public class TriangleValidationService {
      * @return соответствие прямоугольного треугольника теореме Пифагора
      */
     public boolean isTriangleRightByPythagoreanTheorem(RightTypeTriangleData triangle) {
-        return Math.pow(triangle.getHypotenuse(), 2) + MEASUREMENT_ERROR >
+        return Math.pow(triangle.getHypotenuse(), 2) - MEASUREMENT_ERROR <
                 Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2)
-                || Math.pow(triangle.getHypotenuse(), 2) + MEASUREMENT_ERROR <
+                && Math.pow(triangle.getHypotenuse(), 2) + MEASUREMENT_ERROR >
                 Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2);
     }
 
