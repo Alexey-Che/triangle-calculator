@@ -15,6 +15,7 @@ public class TriangleValidationService {
 
     /**
      * Проверяет параметры треугольника по критериям существования
+     *
      * @param request {@link TriangleDataRequest} значения длин сторон и углов треугольника
      */
     public void validateTriangleDataRequest(TriangleDataRequest request) {
@@ -35,18 +36,20 @@ public class TriangleValidationService {
 
     /**
      * Проверка прямоугольного треугольника по теореме Пифагора
+     *
      * @param triangle {@link TriangleDataRequest} значения длин сторон
      * @return соответствие прямоугольного треугольника теореме Пифагора
      */
     public boolean isTriangleRightByPythagoreanTheorem(RightTypeTriangleData triangle) {
-        return Math.pow(triangle.getHypotenuse(), 2) - MEASUREMENT_ERROR <
-                Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2)
-                && Math.pow(triangle.getHypotenuse(), 2) + MEASUREMENT_ERROR >
-                Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2);
+        return Math.pow(triangle.getHypotenuse(), 2) - MEASUREMENT_ERROR
+                < Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2)
+                && Math.pow(triangle.getHypotenuse(), 2) + MEASUREMENT_ERROR
+                > Math.pow(triangle.getAdjacentLeg(), 2) + Math.pow(triangle.getOppositeLeg(), 2);
     }
 
     /**
      * Проверка суммы углов в треугольнике
+     *
      * @param request {@link TriangleDataRequest} значения углов в градусах
      * @return соответствие сумме в 180 градусов
      */
@@ -56,6 +59,7 @@ public class TriangleValidationService {
 
     /**
      * Проверка, что ни одна из сторон в треугольнике не больше суммы двух других
+     *
      * @param request {@link TriangleDataRequest} значения длин сторон
      * @return соответствие того, что ни одна из сторон в треугольнике не больше суммы двух других
      */
@@ -67,6 +71,7 @@ public class TriangleValidationService {
 
     /**
      * Проверка равностороннего треугольника
+     *
      * @param request {@link TriangleDataRequest} значения длин сторон
      * @return равенство всех сторон треугольника
      */
